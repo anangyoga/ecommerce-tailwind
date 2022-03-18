@@ -1,6 +1,9 @@
 import "./App.css";
+import Menu from "./components/Menu";
+import products from "./services/data/product";
 
 function App() {
+  console.log(products);
   return (
     <div className="container mx-auto">
       {/* top menu */}
@@ -40,54 +43,12 @@ function App() {
       {/* main menu */}
       <div className="flex justify-between mt-0 bg-gray-100 py-2 pl-6">
         <ul className="flex gap-14 items-center font-semibold">
-          <li className="inline-flex">
-            Bakeri
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
-          <li className="inline-flex">
-            Fruit and vegetables
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
-          <li className="inline-flex">
-            Meat and fish
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
-          <li className="inline-flex">
-            Drink
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
-          <li className="inline-flex">
-            Kitchen
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
-          <li className="inline-flex">
-            Special nutrition
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
-          <li className="inline-flex">
-            Baby
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
-          <li className="inline-flex">
-            Pharmacy
-            <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-              <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </li>
+          <Menu title="Bakeri" />
+          <Menu title="Fruits & Vegetables" />
+          <Menu title="Meat & Fish" />
+          <Menu title="Drink" />
+          <Menu title="Kitchen" />
+          <Menu title="Baby" />
         </ul>
       </div>
 
@@ -421,92 +382,33 @@ function App() {
 
         {/* product */}
         <div className="w-4/5">
-          <div className="flex flex-wrap  justify-center gap-8">
-            <div className="flex gap-8">
-              <div className="border-2 border-gray-200 px-3 rounded-lg">
-                <img src="/images/products/bolu.png" alt="" className="mt-3" />
-                <h2 className="font-bold mb-3 mt-3">Bolu Susun</h2>
-                <p className="text-gray-500 text-xs">Disusun dengan penuh kenangan</p>
-                <div className="flex justify-between mt-3">
-                  <div className="flex-col">
-                    <p className="font-bold">36.000</p>
-                    <p className="text-gray-500 text-xs line-through">40.000</p>
+          <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex gap-8  flex-wrap">
+              {products.map((product, index) => {
+                const priceAfterDiscounted = product.originalPrice - (product.originalPrice * product.discountPercent) / 100;
+                return (
+                  <div className="border-2 border-gray-200 px-3 rounded-lg">
+                    <img src={product.image} alt="" className="mt-3" />
+                    <h2 className="font-bold mb-3 mt-3">{product.name}</h2>
+                    <p className="text-gray-500 text-xs">{product.desc}</p>
+                    <div className="flex justify-between mt-3">
+                      <div className="flex-col">
+                        <p className="font-bold">{priceAfterDiscounted}</p>
+                        {product.discountPercent > 0 && <p className="text-gray-500 text-xs line-through">{product.originalPrice}</p>}
+                      </div>
+                      <button className="h-8 px-2 font-bold text-white bg-green-600 rounded-lg">Buy Now</button>
+                    </div>
                   </div>
-                  <button className="h-8 px-2 font-bold text-white bg-green-600 rounded-lg">Buy Now</button>
-                </div>
-              </div>
-
-              <div className="border-2 border-gray-200 px-3 rounded-lg">
-                <img src="/images/products/mie.png" alt="" className="mt-3" />
-                <h2 className="font-bold mb-3 mt-3">Mie Aceh</h2>
-                <p className="text-gray-500 text-xs">Rasanya menusuk jiwa dan raga</p>
-                <div className="flex justify-between mt-3">
-                  <div className="flex-col">
-                    <p className="font-bold">26.000</p>
-                    <p className="text-gray-500 text-xs line-through">30.000</p>
-                  </div>
-                  <button className="h-8 px-2 font-bold text-white bg-green-600 rounded-lg">Buy Now</button>
-                </div>
-              </div>
-
-              <div className="border-2 border-gray-200 px-3 rounded-lg">
-                <img src="/images/products/lapis.png" alt="" className="mt-3" />
-                <h2 className="font-bold mb-3 mt-3">Bolu Lapis</h2>
-                <p className="text-gray-500 text-xs">Lapisan legit disetiap sentuhan</p>
-                <div className="flex justify-between mt-3">
-                  <div className="flex-col">
-                    <p className="font-bold">42.000</p>
-                  </div>
-                  <button className="h-8 px-2 font-bold text-white bg-green-600 rounded-lg">Buy Now</button>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <div className="border-2 border-gray-200 px-3 rounded-lg">
-                <img src="/images/products/donut.png" alt="" className="mt-3" />
-                <h2 className="font-bold mb-3 mt-3">Donat</h2>
-                <p className="text-gray-500 text-xs">Rasa nya bikin hangat</p>
-                <div className="flex justify-between mt-3">
-                  <div className="flex-col">
-                    <p className="font-bold">15.000</p>
-                  </div>
-                  <button className="h-8 px-2 font-bold text-white bg-green-600 rounded-lg">Buy Now</button>
-                </div>
-              </div>
-
-              <div className="border-2 border-gray-200 px-3 rounded-lg">
-                <img src="images/products/pizza.png" alt="" className="mt-3" />
-                <h2 className="font-bold mb-3 mt-3">Pizza Huut</h2>
-                <p className="text-gray-500 text-xs">Potongan penuh nikmat dan lezat</p>
-                <div className="flex justify-between mt-3">
-                  <div className="flex-col">
-                    <p className="font-bold">30.000</p>
-                    <p className="text-gray-500 text-xs line-through">40.000</p>
-                  </div>
-                  <button className="h-8 px-2 font-bold text-white bg-green-600 rounded-lg">Buy Now</button>
-                </div>
-              </div>
-
-              <div className="border-2 border-gray-200 px-3 rounded-lg">
-                <img src="images/products/telor.png" alt="" className="mt-3" />
-                <h2 className="font-bold mb-3 mt-3">Mata Sapi</h2>
-                <p className="text-gray-500 text-xs">Rasanya tidak seperti Mata Najwa</p>
-                <div className="flex justify-between mt-3">
-                  <div className="flex-col">
-                    <p className="font-bold">12.000</p>
-                  </div>
-                  <button className="h-8 px-2 font-bold text-white bg-green-600 rounded-lg">Buy Now</button>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
 
           <div className="flex justify-center mt-14">
-            <button data-dropdown-toggle="dropdown" class="text-white bg-green-600 font-bold rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">
+            <button data-dropdown-toggle="dropdown" className="text-white bg-green-600 font-bold rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">
               Show more product
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
           </div>
