@@ -1,12 +1,12 @@
-function Menu(props) {
+import { DownOutlined } from "@ant-design/icons";
+
+const Menu = (props) => {
   return (
-    <li className="inline-flex">
+    <li className="inline-flex items-center">
       {props.title}
-      <svg className="ml-1 w-3 h-3 mt-1 stroke-slate-400" fill="none" viewBox="0 0 24 24">
-        <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
+      {props.icon && <DownOutlined className="text-xs ml-2 text-green-500" />}
     </li>
   );
-}
+};
 
 export default Menu;

@@ -44,12 +44,12 @@ function App() {
       {/* main menu */}
       <div className="flex justify-between mt-0 bg-gray-100 py-2 pl-6">
         <ul className="flex gap-14 items-center font-semibold">
-          <Menu title="Bakeri" />
-          <Menu title="Fruits & Vegetables" />
-          <Menu title="Meat & Fish" />
-          <Menu title="Drink" />
-          <Menu title="Kitchen" />
-          <Menu title="Baby" />
+          <Menu icon={true} title="Bakeri" />
+          <Menu icon={true} title="Fruits & Vegetables" />
+          <Menu icon={true} title="Meat & Fish" />
+          <Menu icon={true} title="Drink" />
+          <Menu icon={true} title="Kitchen" />
+          <Menu icon={false} title="Baby" />
         </ul>
       </div>
 
