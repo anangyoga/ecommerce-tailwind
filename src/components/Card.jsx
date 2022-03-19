@@ -5,7 +5,7 @@ const Card = ({ product }) => {
   const priceAfterDiscounted = product.originalPrice - (product.originalPrice * product.discountPercent) / 100;
 
   return (
-    <div className="border-2 border-gray-200 px-3 rounded-lg">
+    <div className="border-2 border-gray-200 rounded-lg">
       <img src={product.image} alt="" className="mt-3" />
       <h2 className="font-bold mb-3 mt-3">{product.name}</h2>
       <p className="text-gray-500 text-xs">{product.desc}</p>
